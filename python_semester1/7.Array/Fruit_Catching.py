@@ -96,3 +96,9 @@ while score < wining_score:
     time.sleep(1/FPS) # to give a steady frame rate
     window.update()
     window.tracer(1)
+
+win_screen = t.Turtle()
+win_screen.hideturtle()
+win_screen.penup()
+win_screen.write("Congratulations!!", font=("Arial", 30, "bool"))
+t.done()

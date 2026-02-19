@@ -98,3 +98,14 @@ else:
     print(f"NO bro {user_input} is not in the list")"""
 
 print(user_input if user_input.lower() in new_list else "Not Found")
+
+
+# something very importand to note
+# This thing can steal as well
+
+list_letter = ["a", "v","b", "g"]
+
+letter_v = list_letter.pop(1)
+
+print(list_letter) # you will see that the letter "v" is removed from the list and stored in the variable letter_v
+print(letter_v)

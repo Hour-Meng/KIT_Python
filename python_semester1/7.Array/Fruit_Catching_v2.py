@@ -40,6 +40,19 @@ def move_right(): # we move right using "D" key
         bucket.setx(bucket.xcor())
     else:
         bucket.setx(bucket.xcor() + move)
+# our fruits
+fruits = []
+def create_fruit():
+    fruit = t.Turtle()
+    fruit.penup()
+    fruit.hideturtle()
+    fruit.goto(random.randint(-280, 280), random.randint(300, 380))
+    fruit.shape("circle")
+    fruit.color(random(fruits_dic.values()))
+    
+    fruit.shapesize(2,2)
+    fruit.showturtle()
+    fruits.append(fruit)
 
 def floating_points(caught_fruit):
     point = t.Turtle()
@@ -49,48 +62,6 @@ def floating_points(caught_fruit):
     point.write("+1", font= ("Michroma", 15, 'bold'))
     float_point_list.append(point)
 
-
-float_point_list = list() # to store the floating points
-
-
-wining_score = 20
-#fruit falling logic
-"""while score < wining_score:
-    # The moving logic
-    window.listen()
-    window.onkeypress(move_left, "a")
-    window.onkeypress(move_right, "d")
-    window.tracer(0) # to make the game run smoother
-    # spawn the fruit
-    for fruit in fruits:
-        fruit.sety(fruit.ycor() - 5)
-        # when fruit touched the ground
-        if fruit.ycor() < -300:
-            fruit.hideturtle()
-            fruits.remove(fruit)
-            create_fruit()
-        # when fruit touched the bucket
-        if bucket.distance(fruit) < 10:
-            score_board.clear()
-            score += 1
-            score_board.write(f"Score: {score}", font= ("Michroma", 25, 'bold'))
-            fruit.hideturtle()
-            fruits.remove(fruit)
-            create_fruit()
-            floating_points(fruit)"""
-
-
-"""
-    time.sleep(1/FPS) # to give a steady frame rate
-    window.update()
-    window.tracer(1)
-    for point in float_point_list:
-        point.sety(point.ycor() + 1)
-        if point.ycor() > 400:
-            float_point_list.remove(point)
-"""
-
-
 #dictionary of fruits
 fruits_dic  = {"apple":"#fb542b", 
                "banana":"#edfb2b",
@@ -98,33 +69,41 @@ fruits_dic  = {"apple":"#fb542b",
                  "strawberry":"#d96565",
                    "coconut":"#fcf8f8"}
 
-dic_list = list()
+float_point_list = list() # to store the floating points
 
-def spawn_fruit(dic):
-    for fruit_name, fruit_value in dic.items():
-        fruit_name = t.Turtle()
-        fruit_name.hideturtle()
-        fruit_name.penup()
-        fruit_name.shape("circle")
-        fruit_name.shapesize(3,3)
-        fruit_name.color(fruit_value)
-        fruit_name.goto(random.randint(-280, 280), random.randint(300, 380))
-        fruit_name.showturtle()
-        print(f"The fruit position is at xcor: {fruit_name.xcor()} , ycor: {fruit_name.ycor()}")
-        dic_list.append([fruit_name, fruit_value])
 
-t.tracer(0)
-spawn_fruit(fruits_dic)
+wining_score = 20
+#fruit falling logic
+while score < wining_score:
+    # The moving logic
+    window.listen()
+    window.onkeypress(move_left, "a")
+    window.onkeypress(move_right, "d")
+    window.tracer(0) # to make the game run smoother
+    # spawn the fruit
+    for fruit in fruits_dic:
+        fruit.sety(fruit.ycor() - 5)
+        # when fruit touched the ground
+        if fruit.ycor() < -300:
+            fruit.hideturtle()
+            fruits_dic.remove(fruit)
 
-while True:
+        # when fruit touched the bucket
+        if bucket.distance(fruit) < 10:
+            score_board.clear()
+            score += 1
+            score_board.write(f"Score: {score}", font= ("Michroma", 25, 'bold'))
+            fruit.hideturtle()
+            fruits_dic.remove(fruit)
+  
 
-    for fruit in dic_list:
-        fruit[0].sety(fruit[0].ycor() - 5)
 
-        if fruit[0].ycor() < -400:
-            fruit[0].hideturtle()
-            dic_list.remove(fruit)
-            spawn_fruit(fruits_dic)
-            
-    time.sleep(1/60)
+    time.sleep(1/FPS) # to give a steady frame rate
     window.update()
+    window.tracer(1)
+
+win_screen = t.Turtle()
+win_screen.hideturtle()
+win_screen.penup()
+win_screen.write("Congratulations!!", font=("Arial", 30, "bool"))
+t.done()
