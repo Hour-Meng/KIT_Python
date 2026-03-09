@@ -9,3 +9,15 @@ class Bucket(t.Turtle):
         self.shape(image_asset)
         self.goto(0, y_cor)
 
+    def move_left(self):
+        if self.xcor() > -280:
+            self.setx(self.xcor() - 20)
+        else:
+            self.setx(-280)
+
+    def move_right(self):
+        if self.xcor() < 280:
+            self.setx(self.xcor() + 20)
+        else:
+            self.setx(280)
+        
