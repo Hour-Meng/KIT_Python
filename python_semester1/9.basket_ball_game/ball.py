@@ -4,7 +4,6 @@ import random
 s_dir = os.path.dirname(os.path.abspath(__file__))
 ball_file = os.path.join(s_dir, "bk_ball_r_d.gif")
 
-
 class Ball(t.Turtle):
     possible_y = (280, 320, 360, 390)
     def __init__(self, ball_file):
@@ -23,9 +22,9 @@ class Ball(t.Turtle):
         self.sety(self.ycor() - self.dy)
 
         if self.ycor() < -400:
-            self.despawn()
+            self.respawn()
 
-    def despawn(self):
+    def respawn(self):
         self.random_x = random.randint(-280, 280)
         self.random_y = random.choice(self.possible_y) 
         self.goto(self.random_x, self.random_y)
