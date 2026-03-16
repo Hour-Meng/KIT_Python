@@ -17,8 +17,6 @@ sqaure_draw.penup()
 sqaure_draw.goto(-200,0)
 sqaure_draw.pendown()
 
-
-
 for _ in range(3):  
           
     sqaure_draw.begin_fill()

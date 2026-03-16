@@ -57,11 +57,11 @@ def update_score():
     score.clear()
     score.write(f"Score: {Score}/10", font=("Arial", 20, "bold"))"""
 
-score_board = Score(-280 , 360)
+score_board = Score(-70 , 360)
     
 FPS = 60
 AI = True # My AI is still bad, I will config it once I have enough knowledge of it
-AI_movement = 20
+AI_movement = 10
 
 # ===================================================================================================================== #
 
@@ -74,13 +74,15 @@ while score_board.main_score < 10:
     for ball in ball_ls:
         # AI Play
         if AI:
-            if ball.xcor() < main_hoop.xcor():
-                main_hoop.setx(main_hoop.xcor() - AI_movement)
-            elif ball.xcor() > main_hoop.xcor():
-                main_hoop.setx(main_hoop.xcor() + AI_movement)
-            elif main_hoop.xcor() == ball.xcor():
-                main_hoop.setx(main_hoop.xcor())
-                 
+            if main_hoop.distance(ball) < 100:
+                if ball.xcor() < main_hoop.xcor():
+                    main_hoop.setx(main_hoop.xcor() - AI_movement)
+                elif ball.xcor() > main_hoop.xcor():
+                    main_hoop.setx(main_hoop.xcor() + AI_movement)
+                elif ball.xcor() == main_hoop.xcor():
+                    main_hoop.setx(main_hoop.xcor())
+                
+                    
         # touch function
         if main_hoop.distance(ball) < 30:
             ball.respawn()
@@ -97,5 +99,5 @@ while score_board.main_score < 10:
 
 win = t.Turtle()
 win.color("#1f2223")
-win.write("You Win the Game", font=("Arial", 40, "bold"), align= "center")
+win.write("You Win The Game", font=("Arial", 40, "bold"), align= "center")
 t.done()
